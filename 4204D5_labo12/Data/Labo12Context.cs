@@ -55,6 +55,11 @@ namespace _4204D5_labo12.Data
                     .HasConstraintName("FK_EtudiantFruit_FruitID");
             });
 
+            modelBuilder.Entity<Fruit>(entity =>
+            {
+                entity.Property(e => e.Identifiant).HasDefaultValueSql("(newid())");
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

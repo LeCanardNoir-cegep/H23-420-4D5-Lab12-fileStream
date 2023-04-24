@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace _4204D5_labo12.Models
 {
     [Table("Fruit", Schema = "Fruits")]
+    [Index("Identifiant", Name = "UC_Fruit_Identifiant", IsUnique = true)]
     public partial class Fruit
     {
         public Fruit()
@@ -23,6 +24,8 @@ namespace _4204D5_labo12.Models
         [StringLength(30)]
         [Unicode(false)]
         public string Couleur { get; set; } = null!;
+        public Guid Identifiant { get; set; }
+        public byte[]? Photo { get; set; }
 
         [InverseProperty("Fruit")]
         public virtual ICollection<EtudiantFruit> EtudiantFruits { get; set; }

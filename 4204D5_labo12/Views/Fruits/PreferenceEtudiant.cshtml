@@ -39,6 +39,10 @@
     @foreach(var item in Model.PhotosFruits)
     {
         <!-- Pour chaque item, afficher l'image. Par contre, si item == NULL, on affiche /images/placeholder.png -->
+        @if( item != null)
+        {
+            <img src="@item" />            
+        }
     }
 }
 

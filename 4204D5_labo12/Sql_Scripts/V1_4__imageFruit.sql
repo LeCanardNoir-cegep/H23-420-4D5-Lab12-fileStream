@@ -1,0 +1,14 @@
+USE Labo12
+GO
+
+ALTER TABLE Fruits.Fruit
+ADD Identifiant UNIQUEIDENTIFIER NOT NULL ROWGUIDCOL DEFAULT newid();
+GO
+
+ALTER TABLE Fruits.Fruit
+ADD CONSTRAINT UC_Fruit_Identifiant UNIQUE (Identifiant);
+GO
+
+ALTER TABLE Fruits.Fruit
+ADD Photo VARBINARY(max) FILESTREAM NULL;
+GO

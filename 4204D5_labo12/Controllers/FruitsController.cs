@@ -19,7 +19,6 @@ namespace _4204D5_labo12.Controllers
         {
             return View();
         }
-
         public IActionResult AjouterImage()
         {
             return View();
@@ -48,6 +47,15 @@ namespace _4204D5_labo12.Controllers
                 // Remplir la propriété fruit.Photo
 
                 // █♦♦♦█ AJOUTEZ DU CODE ICI █♦♦♦█
+
+                if( iuvm.FormFile != null && iuvm.FormFile.Length >=0)
+                {
+                    MemoryStream stream = new MemoryStream();
+                    await iuvm.FormFile.CopyToAsync(stream);
+                    fruit.Photo = stream.ToArray();
+                }
+
+                _context.Update(fruit);
 
                 await _context.SaveChangesAsync();
                 ViewData["message"] = "Image ajoutée pour " + iuvm.NomFruit + " !";
@@ -90,6 +98,7 @@ namespace _4204D5_labo12.Controllers
             // On remplit la liste fpvm.PhotosFruits qui contiendra les PHOTOS des fruits
             // Inspirez-vous de la ligne de code précédente !! (Qui utilise .Select) 
             // █♦♦♦█ AJOUTEZ DU CODE ICI █♦♦♦█
+            fpvm.PhotosFruits = fruitsPreferes.Select( x => x.Photo == null ? null : $"data:image/png;base64,{Convert.ToBase64String( x.Photo )}" ).ToList();
 
             DateTime tempsApres = DateTime.Now;
             ViewData["temps"] = tempsApres.Subtract(tempsAvant).TotalMilliseconds;
