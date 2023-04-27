@@ -8,5 +8,5 @@ GO
 
 DROP INDEX IF EXISTS Fruits.EtudiantFruit.IX_EtudiantFruit_FruitID
 GO
-CREATE NONCLUSTERED INDEX IX_EtudiantFruit_FruitID ON Fruits.EtudiantFruit(FruitID);
+CREATE NONCLUSTERED INDEX IX_EtudiantFruit_EtudiantID_FruitID ON Fruits.EtudiantFruit(EtudiantID,FruitID);
 GO
